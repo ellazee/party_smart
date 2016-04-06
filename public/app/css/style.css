@@ -1,3 +1,61 @@
 body {
-	font-family: Raleway;
+	background: #000000;
+	font-family: Capriola;
+	color: white;
+}
+h3 {
+	font-family: Montserrat;
+	font-weight: bold;
+}
+legend {
+	color: white;
+}
+.btn-home {
+	height: 8em;
+}
+.drinks {
+	padding: 1em;
+}
+.navbar-default .navbar-nav>li>a {
+	color: white;
+}
+
+li {
+	cursor: pointer;
+	list-style-type: none;
+}
+.btn {
+	cursor: pointer;
+}	
+.navbar {
+	font-family: Montserrat;
+	background: transparent;
+	color: white;
+}
+.btn-green {
+	background: #AEEE00;
+	color: white;
+}
+.btn-teal {
+	background: #01B0F0;
+	color: white;
+}
+.btn-pink {
+	background: #FF358B;
+	color: white;
+}
+.btn-orange {
+	background: #F7773E;
+}
+.cocktail {
+	background: #FF358B;
+	color: black;
+}
+.beer {
+	background: #AEEE00;
+	color: black;
+}
+.wine {
+	background: #01B0F0;
+	color: black;
 }

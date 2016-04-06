@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="PartyApp">
 	<head>
+		<base href="/">
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,14 +9,22 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-resource.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap-tpls.js"></script>
+		<script src="app/js/angular-local-storage.min.js"></script>
 		<script src="app/app.js"></script>
 		<script src="app/controllers.js"></script>
+		<script src="app/directives.js"></script>
+		<script src="app/services.js"></script>
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link href='http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="app/css/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="shortcut icon" type="image/ico" href="app/css/images/partysmart.ico"/>
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,7 +34,14 @@
 		<![endif]-->
 	</head>
 	<body>
-		<h1 class="text-center">Sup</h1>
+		<!-- <h1 class="text-center">Sup</h1> -->
+		<navbar></navbar>
+		<div class="container">
+    	<div ui-view></div>
+    	
+
+		</div>
+		<!-- <footer></footer> -->
 
 		<!-- jQuery -->
 		<script src="//code.jquery.com/jquery.js"></script>

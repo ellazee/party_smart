@@ -1,0 +1,22 @@
+<div class="text-center"> 
+	<h2>Drinkin</h2>
+	<p>Hello, {{ username }}</p>
+
+	<button class="btn btn-orange" ng-click="startTracker()" >Start Tracking</button>Start Time:</br> {{ startTime }}
+</div>	
+<div class="row">
+	<ul>
+		<div class="col col-sm-4">
+			<li><a ng-click="addWine()" class="drinks"><img class="img-responsive wine" src="app/css/images/wine.png"></img></a></li>{{ winecounter }}
+		</div>
+		<div class="col col-sm-4">
+			<li><a ng-click="addBeer()" class="drinks"><img class="img-responsive beer" src="app/css/images/beer.png"></img></a></li>{{ beercounter }}
+		</div>
+		<div class="col col-sm-4">
+			<li><a ng-click="addCocktail()" class="drinks"><img class="img-responsive cocktail" src="app/css/images/cocktail.png"></img></a></li> {{ cocktailcounter}}
+		</div>
+	</ul>
+</div>	
+	
+<div>Total Drinks: {{ beercounter + winecounter + cocktailcounter }}</div>
+<button ng-click="calcNewBac()" class="btn btn-pink">Calculate Current BAC</button>

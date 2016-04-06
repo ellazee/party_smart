@@ -8,16 +8,18 @@ var app = express();
 var secret = "myverysuperdupersecretthing";
 
 var mongoose = require('mongoose');
-// var User = require('./models/user');
-// var mongodbUri = process.env.MONGO;
-// mongoose.connect(mongodbUri);
+var User = require('./models/user');
+mongoose.connect('mongodb://localhost/party_smart');
+// var mongodbenv = process.env.MONGO;
+// mongoose.connect(mongodbenv);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/api/users', expressJWT({secret: secret})
-// 	.unless({path: ['/api/users'], method: 'post'}));
+app.use('/api/sessions', expressJWT({secret: secret}));
+app.use('/api/users', expressJWT({secret: secret})
+	.unless({path: ['/api/users'], method: 'post'}));
 
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
@@ -25,7 +27,8 @@ app.use(function (err, req, res, next) {
   }
 });
 
-// app.use('/api/users', require('./controllers/users'));
+app.use('/api/sessions', require('./controllers/sessions'));
+app.use('/api/users', require('./controllers/users'));
 
 app.post('/api/auth', function(req, res) {
   User.findOne({email: req.body.email}, function(err, user) {
