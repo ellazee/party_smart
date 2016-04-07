@@ -13,6 +13,11 @@ app.config([
       templateUrl: 'app/views/home.html',
       controller: 'HomeCtrl'
     })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: 'app/views/profile.html',
+      controller: 'ProfileCtrl'
+    })
     .state('bac', {
       url: '/bac',
       templateUrl: 'app/views/bac.html',

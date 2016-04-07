@@ -18,12 +18,15 @@ angular.module("AppCtrls", ['PartyServices'])
 	} 
 }])
 .controller('LoginCtrl', ['$scope', '$http', '$location', 'Auth', 'User', function($scope, $http, $location, Auth, User) {
+	$scope.hideOnLoggedIn = true;
+	
 	$scope.user = {
 		username: '',
 		email: '',
 		password: ''
 	};
 	$scope.userLogin = function() {
+		// $scope.hideOnLoggedIn = false;
 		$http.post('api/auth', $scope.user).then(function success(res) {
 			Auth.saveToken(res.data.token);
 			User = res.data.user;
@@ -31,6 +34,7 @@ angular.module("AppCtrls", ['PartyServices'])
 			localStorage.setItem('username', User.username);
 			localStorage.setItem('userweight', User.weight);
 			localStorage.setItem('usergender', User.gender);
+			localStorage.setItem('useremail', User.email);
 
 			$location.path('/')
 		}, function error(res) {
@@ -39,8 +43,9 @@ angular.module("AppCtrls", ['PartyServices'])
 	}
 }])
 
-.controller('NavCtrl', ['$scope', 'Auth', '$state', function($scope, Auth, $state) {
+.controller('NavCtrl', ['$scope', 'Auth', '$state', '$location', function($scope, Auth, $state, $location) {
   $scope.Auth = Auth;  
+  $scope.username = localStorage.getItem('username');
   // $scope.user = {
   // 	username: ''
   // };
@@ -49,7 +54,11 @@ angular.module("AppCtrls", ['PartyServices'])
   $scope.logout = function() {
     //to implement
     Auth.removeToken();
-    $state.reload();
+    localStorage.clear();
+    $location.path('/');
+    // $state.reload();
+    
+    // $scope.hideOnLoggedIn = true;
   }
 }])
 
@@ -58,6 +67,13 @@ angular.module("AppCtrls", ['PartyServices'])
 }])
 
 .controller('HomeCtrl', ['$scope', function($scope) {
+
+}])
+.controller('ProfileCtrl', ['$scope', 'User', function($scope, User) {
+	$scope.username = localStorage.getItem('username');
+	$scope.email = localStorage.getItem('useremail');
+	$scope.weight = localStorage.getItem('userweight');
+	$scope.gender = localStorage.getItem('usergender');
 
 }])
 
@@ -89,11 +105,15 @@ angular.module("AppCtrls", ['PartyServices'])
 	$scope.winecounter = 0;
 	$scope.cocktailcounter = 0;
 	$scope.username = localStorage.getItem('username');
+	$scope.trackerOn = false;
+
 	// User = res.data.user;
 	// $scope.user = User
 	$scope.startTracker = function() {
 		$scope.startTime = $filter('date')(new Date(), 'EEEE h:mm a');
 		$scope.startMathTime = Date.parse(new Date());
+		$scope.trackerOn = true;
+
 		console.log($scope.startMathTime);
 	}
 	$scope.addBeer = function() {
@@ -111,21 +131,43 @@ angular.module("AppCtrls", ['PartyServices'])
 		$scope.gender = localStorage.getItem('usergender');
 		$scope.weight = localStorage.getItem('userweight');
 		$scope.calcTime = Date.parse(new Date());
-		console.log($scope.calcTime);
+		console.log($scope.weight);
 		$scope.weightInGrams = $scope.weight * 454;
-		console.log($scope.weightInGrams);
-		console.log($scope.gender);
+		console.log("User weight in grams is" + $scope.weightInGrams);
+		console.log("User gender is" + $scope.gender);
 		$scope.alcolholInGrams = ($scope.beercounter + $scope.winecounter + $scope.cocktailcounter) * 14;
+		console.log("Alcohol in grams is" + $scope.alcolholInGrams);
 		if($scope.gender == 'female') {
 			$scope.genderConstant = $scope.weightInGrams * .55
 			} else {
 			$scope.genderConstant =	$scope.weightInGrams * .68
 			};
+
+		console.log("gender constant is" + $scope.genderConstant);
+		console.log("Calc time is" + $scope.calcTime);
+		console.log("Start time is" + $scope.startMathTime);
+		console.log("Math of time is " + ($scope.calcTime - $scope.startMathTime));
+		console.log("In minutes: "+ ($scope.calcTime - $scope.startMathTime)/(60000));
+		console.log("Hours passed: "+ (($scope.calcTime - $scope.startMathTime)/(60000))/60);
+		$scope.hoursPassed = (($scope.calcTime - $scope.startMathTime)/(60000))/60;
+
+		// $scope.milliseconds = ($scope.startMathTime/(1000*60*60)) - ($scope.calcTime);
+		// $scope.minutesPassed = ($scope.startMathTime/(1000*60));
+		// console.log("Hours: " + $scope.hoursPassed)
+		// console.log("Minutes: " + $scope.minutesPassed)
+		// minutes = (int) ((milliseconds / (1000*60)) % 60);
+		// int hours   = (int) ((milliseconds / (1000*60*60)) % 24)
 		$scope.bac = ($scope.alcolholInGrams/$scope.genderConstant) * 100;
-		$scope.bacTracking = $scope.bac - (($scope.calcTime -$scope.startMathTime)  * 0.015);
+		console.log("BAC is "+ $scope.bac);
+		$scope.bacTracking = $scope.bac - ($scope.hoursPassed * 0.015);
 		console.log($scope.bacTracking);
 		localStorage.setItem('bacTracking', $scope.bacTracking);
+		$scope.showBAC = true;
 		}
+	$scope.reset = function() {
+		$scope.trackerOn = false;
+		window.location.reload();
+	}	
 	
 }])
 .controller('TimerCtrl', ['$scope', '$interval', '$filter', function($scope, $interval, $filter) {

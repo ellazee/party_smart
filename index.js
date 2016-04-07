@@ -9,9 +9,8 @@ var secret = "myverysuperdupersecretthing";
 
 var mongoose = require('mongoose');
 var User = require('./models/user');
-mongoose.connect('mongodb://localhost/party_smart');
-// var mongodbenv = process.env.MONGO;
-// mongoose.connect(mongodbenv);
+var mongodbenv = process.env.MONGOLAB_URI;
+mongoose.connect(mongodbenv || 'mongodb://localhost/party_smart');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false }));

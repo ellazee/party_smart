@@ -19,6 +19,7 @@
 	      <li><a ui-sref="login" ng-hide="Auth.isLoggedIn()">LOGIN</a></li>
 	      <!-- <li ng-show="Auth.isLoggedIn()">{{ user.username }}</li> -->
 	      <li><a ng-click="logout()" ng-show="Auth.isLoggedIn()">LOGOUT</a></li>
+        <li><a ui-sref="profile" ng-show="Auth.isLoggedIn()">Hello, {{ username }}</a></li>
       </ul>
 
     </div><!-- /.navbar-collapse -->
