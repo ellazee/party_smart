@@ -15,7 +15,7 @@ The formula used to calculate a person's blood alcohol content was Widmark's For
 Future Plans for PartySmart: 
 * Add two-way data-binding so that the user can decrease the number of drinks recorded
 * Add formula to reverse calculate BAC so the user can know how many hours until BAC is under the legal limit
-* 
+* Add ability to calculate different sizes/strengths of drink (ie pint of beer vs 12oz bottle of beer)
 
 
 
