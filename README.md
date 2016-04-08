@@ -12,5 +12,10 @@ PartySmart is a MEAN stack app (using Mongo, Express, AngularJS and Node).
 
 The formula used to calculate a person's blood alcohol content was Widmark's Formula: http://www.wikihow.com/Calculate-Blood-Alcohol-Content-(Widmark-Formula)
 
+Future Plans for PartySmart: 
+* Add two-way data-binding so that the user can decrease the number of drinks recorded
+* Add formula to reverse calculate BAC so the user can know how many hours until BAC is under the legal limit
+* 
+
 
 
