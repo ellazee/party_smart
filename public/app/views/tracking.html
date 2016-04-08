@@ -1,3 +1,5 @@
+
+<!-- Old version of page -->
 <!-- <div class="text-center">  -->
 <h2 class="text-center">Drinkin'?</h2>
 <div class="row">
@@ -5,7 +7,7 @@
 		<!-- <p>Hello, {{ username }}</p> -->
 		<button class="btn btn-orange" ng-click="startTracker()" ng-hide="trackerOn">Start Tracking!</button>
 		<button ng-show="trackerOn" class="btn btn-teal" ng-click="reset()">Reset</button>
-		</br><span ng-show="trackerOn">Start Time:</br> {{ startTime }}</span>
+		</br><span ng-show="trackerOn">Start Time:</br> {{ displayStart }}</span>
 	</div>	
 
 	<ul ng-show="trackerOn">
@@ -22,8 +24,10 @@
 	</ul>
 </div>	
 	
-<div>Total Drinks: {{ beercount + winecount + cocktailcount }}</div>
+<div>Total Drinks: {{ beercounter + winecounter + cocktailcounter }}</div>
 
 	<button ng-click="calcNewBac()" class="btn btn-pink" ng-show="trackerOn">Calculate Current BAC</button>
 	<div ng-show="showBAC">Current BAC is: {{ bacTracking }} </div>
+	
+
 	

@@ -1,16 +1,21 @@
-<!-- <div>
-	<button ng-click="onTimer()" >Start</button>
-    {{counter}}
-  <button ng-click="stop()">Stop</button>    
-</div> -->
+<div class="row">
+  <div class="col col-sm-6">
+    <h3>So Can I Haz More?</h3>
+    <div>
+      <p>Your Total Drinks So Far:  <strong class="showDrinks">{{ totalDrinks }} drinks</strong></p>
+      <p>over the past <strong class="showDrinks">{{ hoursPassed }} hours</strong></p>
+    </div>
+    <p>Your current BAC:<strong class="showDrinks">{{ bacTracking }}</strong></p>
+    <p>Time You Need To Drive: {{ drivable }}</p>
+    <button class="btn btn-teal">
+      Submit
+    </button>
+  </div>
 
-<h3>So Can I Haz More?</h3>
-<p>Your Total Drinks So Far:</p>
-<p>Your current BAC:</p>
-<p>Time You Need To Drive:</p>
-<button class="btn btn-teal">
-  Submit
-  </button>
+  <div class="col-sm-6">
+      <img class="img-responsive beergif" src="app/css/images/beer.gif">
+  </div>
+</div>  
 <!-- <div>
   <div ng-bind = "Message">
   </div>

@@ -1,0 +1,32 @@
+<!-- <div class="text-center">  -->
+<h2 class="text-center">Drinkin'?</h2>
+<div class="row">
+	<div class="col col-sm-4">
+		<!-- <p>Hello, {{ username }}</p> -->
+		<button class="btn btn-orange" ng-click="startTracker()" ng-hide="trackerOn">Start Tracking!</button>
+		<button ng-show="trackerOn" class="btn btn-teal" ng-click="reset()">Reset</button>
+		</br><span ng-show="trackerOn">Start Time:</br> {{ displayStart }}</span>
+		<p>Total Drinks: {{ beercount + winecount + cocktailcount }}</p>
+
+		<button ng-click="calcNewBac()" class="btn btn-pink" ng-show="trackerOn">(Re)Calculate Current BAC</button>
+		<p ng-show="showBAC">Current BAC is: {{ bacTracking }} </p>
+	</div>	
+
+		<div ng-show="trackerOn">
+			<div class="col col-sm-4 col-md-4">
+				<span>Cocktail<a ng-click="addCocktail()" class="drinks"><img class="img-responsive cocktail" src="app/css/images/cocktail.png"></img></a></span> {{ cocktailcounter}}
+			
+				<span>Wine<a ng-click="addWine()" class="drinks"><img class="img-responsive wine" src="app/css/images/wine.png"></img></a></span>{{ winecounter }}
+			</div>
+	
+		
+			<div class="col col-sm-4 col-md-4">
+				<span>Beer<a ng-click="addBeer()" class="drinks"><img class="img-responsive beer" src="app/css/images/beer.png"></img></a></span>{{ beercounter }}
+			
+		
+			</div>
+		</div>	
+			
+		</div>
+	
+</div>	

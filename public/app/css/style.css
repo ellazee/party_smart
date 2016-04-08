@@ -10,8 +10,22 @@ h3 {
 legend {
 	color: white;
 }
+.headline {
+	display: inline-block;
+	margin: 1em;
+}
 .btn-home {
 	height: 8em;
+	display: inline-block;
+	margin-bottom: 1em;
+	margin-top: 1em;
+	/*padding: 1em;*/
+	width: 14em;
+}
+.showDrinks {
+	font-size: 2em;
+	margin: 1em;
+	color: #AEEE00;
 }
 .drinks {
 	padding: 1em;
@@ -19,6 +33,9 @@ legend {
 }
 .navbar-default .navbar-nav>li>a {
 	color: white;
+}
+.beergif {
+	width: 360px;
 }
 
 li {
@@ -59,4 +76,7 @@ li {
 .wine {
 	background: #01B0F0;
 	color: black;
+}
+.error {
+	margin-bottom: 2em;
 }
