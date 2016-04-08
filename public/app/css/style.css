@@ -10,6 +10,9 @@ h3 {
 legend {
 	color: white;
 }
+p {
+	font-size: 16px;
+}
 .headline {
 	display: inline-block;
 	margin: 1em;
@@ -22,8 +25,15 @@ legend {
 	/*padding: 1em;*/
 	width: 14em;
 }
+.btn-track {
+	height: 5em;
+	display: inline-block;
+	margin-top: 1em;
+	width: 10em;
+
+}
 .showDrinks {
-	font-size: 2em;
+	font-size: 1.7em;
 	margin: 1em;
 	color: #AEEE00;
 }
@@ -71,6 +81,9 @@ li {
 .cocktail {
 	background: #FF358B;
 	color: black;
+}
+.drinkcounters {
+	font-size: 16px;
 }
 .beer {
 	background: #AEEE00;
