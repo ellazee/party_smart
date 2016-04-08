@@ -37,6 +37,9 @@ legend {
 .beergif {
 	width: 360px;
 }
+.showimage {
+	width: 400px;
+}
 
 li {
 	cursor: pointer;

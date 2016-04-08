@@ -1,2 +1,12 @@
-<h1>Your BAC</h1>
-<div>{{ bacOverTime }}</div>
+
+<div class="row">
+	<div class="col col-sm-6 text-center">
+	<h1>Your BAC</h1>
+		<h3 class="showDrinks">{{ bacOverTime }}</h3>
+		<h3> {{ message }} </h3>
+	</div>
+	<div class="col col-sm-6">	
+		<img ng-show="drunk" class="showimage" src="app/css/images/drunkcat.png">
+		<img ng-show="notdrunk" class="showimage" src="app/css/images/flamingo.jpeg">
+	</div>
+</div>

@@ -1,5 +1,5 @@
 <h3>PARTY SMART</h3>
-<div class="row">
+<div ng-hide="Auth.isLoggedIn()" class="row">
 	<div class="col-md-6">
 		<form ng-submit="getBAC()">
 			<legend>Calculate Your Blood Alcohol Content</legend>
@@ -25,6 +25,31 @@
 		    <label for="height">Your Height in inches</label>
 		    <input type="number" ng-model="height" class="form-control" id="height" placeholder="enter weight">
 		  </div> -->
+		  <div class="form-group">
+		    <label for="drinks">Alcoholic Drinks Consumed</label>
+		    <input type="number" ng-model="drinks" class="form-control" id="drinks" placeholder="# of drinks">
+		  </div>
+		  <div class="form-group">
+		    <label for="timepassed">Hours Passed</label>
+		    <input type="number" ng-model="time" class="form-control" id="timepassed" placeholder="over x hours">
+		  </div>
+
+		  <button type="submit" class="btn btn-pink">Get BAC</button>
+		  <div>{{ bacOverTime }}</div>
+		</form>
+		
+	</div>
+	<div class="col-md-6">
+		<img class="img-responsive" src="app/css/images/drunkcat.jpg">
+	</div>
+</div>
+
+<!-- for logged in user -->
+<div ng-show="Auth.isLoggedIn()" class="row">
+	<div class="col-md-6">
+		<form ng-submit="lgGetBAC()">
+			<legend>Calculate Your Blood Alcohol Content</legend>
+
 		  <div class="form-group">
 		    <label for="drinks">Alcoholic Drinks Consumed</label>
 		    <input type="number" ng-model="drinks" class="form-control" id="drinks" placeholder="# of drinks">

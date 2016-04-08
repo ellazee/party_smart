@@ -1,4 +1,4 @@
-<div class="row">
+<div ng-show="Auth.isLoggedIn()" class="row">
   <div class="col col-sm-6">
     <h3>So Can I Haz More?</h3>
     <div>
@@ -16,15 +16,8 @@
       <img class="img-responsive beergif" src="app/css/images/beer.gif">
   </div>
 </div>  
-<!-- <div>
-  <div ng-bind = "Message">
-  </div>
-  <br />
-  {{ Timer }}
- 
-  <input type="button" class="btn btn-green" value="Start Timer" ng-click="startTimer()" />
-  <input type="button" class="btn btn-pink" value="Stop Timer" ng-click="StopTimer()" />
+<div ng-hide="Auth.isLoggedIn()" class="text-center">
+  <h4>Oops! You need to be logged in to use this feature.</h4>
+  
+  <button class="btn btn-green btn-home" ui-sref="login"><h4>PLEASE LOGIN</h4></button>
 </div>
-<div>
-	
-</div> -->

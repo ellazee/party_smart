@@ -10,7 +10,7 @@ angular.module("AppCtrls", ['PartyServices'])
 	};
 	$scope.userSignup = function() {
 		$http.post('api/users', $scope.user).then(function success(res) {
-			$location.path('/');
+			$location.path('/login');
 		}, function error(res) {
 			console.log(res);
 		});
@@ -72,7 +72,10 @@ angular.module("AppCtrls", ['PartyServices'])
 
 }])
 
-.controller('bacCtrl', ['$scope', '$location', function($scope, $location) {
+.controller('bacCtrl', ['$scope', '$location', 'Auth', function($scope, $location, Auth) {
+	$scope.Auth = Auth;
+	$scope.drunk = false;
+	$scope.notdrunk = false;
 	$scope.getBAC = function() {
 		// $scope.genders = ['Male', 'Female'];
 		$scope.weightInGrams = $scope.weight * 454;
@@ -83,18 +86,50 @@ angular.module("AppCtrls", ['PartyServices'])
 			$scope.genderConstant =	$scope.weightInGrams * .68
 			};
 		$scope.bac = ($scope.alcolholInGrams/$scope.genderConstant) * 100;
-		$scope.bacOverTime = $scope.bac - ($scope.time * 0.015);
+		$scope.bacOverTime = (($scope.bac - ($scope.time * 0.015)).toFixed(3));
 		console.log($scope.bacOverTime);
 		localStorage.setItem('bacOverTime', $scope.bacOverTime);
 	
 
 		$location.path('/bacresults');
 	}
+	$scope.lgGetBAC = function() {
+		$scope.gender = localStorage.getItem('usergender');
+		$scope.weight = parseInt(localStorage.getItem('userweight'));
+		$scope.calcTime = Date.parse(new Date());
+		$scope.weightInGrams = $scope.weight * 454;
+		$scope.alcolholInGrams = $scope.drinks * 14;
+		if($scope.gender == 'female') {
+			$scope.genderConstant = $scope.weightInGrams * .55
+			} else {
+			$scope.genderConstant =	$scope.weightInGrams * .68
+			};
+		$scope.bac = ($scope.alcolholInGrams/$scope.genderConstant) * 100;
+		// console.log("BAC is "+ $scope.bac);
+		if ($scope.alcolholInGrams == 0) {
+			$scope.bacTracking = "You Haven't Even Had Any Drinks Yet!!!";
+		} else {
+		$scope.bacOverTime = (($scope.bac - ($scope.time * 0.015)).toFixed(3));
+		}
+		console.log($scope.bacOverTime);
+		localStorage.setItem('bacOverTime', $scope.bacOverTime);
+		$location.path('/bacresults');
+		}
+		
 }])
 .controller('ResultsCtrl', ['$scope', function($scope) {
 	$scope.bacOverTime = localStorage.getItem('bacOverTime');
+	if ($scope.bacOverTime >= .08) {
+			$scope.drunk = true;
+			$scope.message = "No Driving!"
+		} else {
+			$scope.message = "Please Drive Safe. Consider taking Lyft."
+			$scope.notdrunk = true;
+		} 
+
 }])
-.controller('TrackCtrl', ['$scope', 'User','$filter', function($scope, User, $filter) {
+.controller('TrackCtrl', ['$scope', 'User','$filter', 'Auth', function($scope, User, $filter, Auth) {
+	$scope.Auth = Auth;
 	$scope.beercounter = parseInt(localStorage.getItem('beercount')) || 0;
 	$scope.winecounter = parseInt(localStorage.getItem('winecount')) || 0;
 	$scope.cocktailcounter = parseInt(localStorage.getItem('cocktailcount')) || 0;
@@ -153,7 +188,7 @@ angular.module("AppCtrls", ['PartyServices'])
 		if ($scope.alcolholInGrams == 0) {
 			$scope.bacTracking = "You Haven't Even Had Any Drinks Yet!!!";
 		} else {
-		$scope.bacTracking = (($scope.bac - ($scope.hoursPassed * 0.015)).toFixed(4));
+		$scope.bacTracking = (($scope.bac - ($scope.hoursPassed * 0.015)).toFixed(3));
 		}
 		console.log($scope.bacTracking);
 		localStorage.setItem('bacTracking', $scope.bacTracking);
@@ -170,7 +205,8 @@ angular.module("AppCtrls", ['PartyServices'])
 	}	
 	
 }])
-.controller('TimerCtrl', ['$scope', '$filter', function($scope, $filter) {
+.controller('TimerCtrl', ['$scope', '$filter', 'Auth', function($scope, $filter, Auth) {
+	$scope.Auth = Auth;  
 	$scope.beercounter = parseInt(localStorage.getItem('beercount')) || 0;
 	$scope.winecounter = parseInt(localStorage.getItem('winecount')) || 0;
 	$scope.cocktailcounter = parseInt(localStorage.getItem('cocktailcount')) || 0;
@@ -196,7 +232,7 @@ angular.module("AppCtrls", ['PartyServices'])
 		if ($scope.alcolholInGrams == 0) {
 			$scope.bacTracking = "You Haven't Even Had Any Drinks Yet!!!";
 		} else {
-		$scope.bacTracking = (($scope.bac - ($scope.hoursPassed * 0.015)).toFixed(4));
+		$scope.bacTracking = (($scope.bac - ($scope.hoursPassed * 0.015)).toFixed(3));
 		}
 		console.log($scope.bacTracking);
 		if ($scope.bacTracking < .08) {
