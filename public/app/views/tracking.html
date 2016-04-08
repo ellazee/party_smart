@@ -1,10 +1,10 @@
 
 <div ng-show="Auth.isLoggedIn()" class="row">
 	<h2 class="text-center">Drinkin'?</h2>
-	<div class="col col-sm-3">
+	<div class="col col-sm-3 text-center">
 		<!-- <p>Hello, {{ username }}</p> -->
 		<button class="btn btn-orange" ng-click="startTracker()" ng-hide="trackerOn">Start Tracking!</button>
-		<button ng-show="trackerOn" class="btn btn-teal" ng-click="reset()">Reset</button>
+		
 		</br><span ng-show="trackerOn">Start Time:</br> {{ displayStart }}</span>
 	</div>	
 
@@ -20,13 +20,16 @@
 			<li>Cocktail<a ng-click="addCocktail()" class="drinks"><img class="img-responsive cocktail" src="app/css/images/cocktail.png"></img></a></li> {{ cocktailcounter}}
 		</div>
 	</ul>
-	<div>Total Drinks: {{ beercounter + winecounter + cocktailcounter }}</div>
+	<h4 class="text-center">Total Drinks: <span class="showDrinks">{{ beercounter + winecounter + cocktailcounter }}</span></h4>
+	
 </div>	
 	
 
-
+<div class="text-center">
 	<button ng-click="calcNewBac()" class="btn btn-pink" ng-show="trackerOn">Calculate Current BAC</button>
-<div ng-show="showBAC">Current BAC is: {{ bacTracking }} </div>
+	<div ng-show="showBAC">Current BAC is: <span class="showDrinks">{{ bacTracking }} </span></div>
+	<button ng-show="trackerOn" class="btn btn-teal" ng-click="reset()">Reset</button>
+</div>
 
 <div ng-hide="Auth.isLoggedIn()" class="text-center">
   <h4>Oops! You need to be logged in to use this feature.</h4>
