@@ -236,13 +236,17 @@ angular.module("AppCtrls", ['PartyServices'])
 		}
 		console.log($scope.bacTracking);
 		if ($scope.bacTracking < .08) {
-			$scope.drivable = "You are good to drive!"	
-		} else {
-			$scope.drivable = "You need to wait {{ hoursTo Wait }} hours";
+			$scope.hoursToWait = "You're good. Please Drive Safe.";	
+		} else if ($scope.bacTracking < .12) {
+				$scope.hoursToWait = 1;
+			} else if ($scope.bacTracking < .2) {
+				$scope.hoursToWait = 2;
+			}
+			// localStorage.setItem('hoursToWait', $scope.hoursToWait);
 		}
 		// localStorage.setItem('currentBac', $scope.bacTracking);
-		}
-
+	
+	
 	if (($scope.beercounter + $scope.winecounter + $scope.cocktailcounter) > 0) {
 		console.log("Already beer-ed");
 		$scope.calcCurrentBac();
